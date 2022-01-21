@@ -1,7 +1,7 @@
 let musicas = [
     {titulo:'A Year Ago', artista:'Neffex', src:'music/A Year Ago - NEFFEX.mp3', img:'image/guitar.jpg'},
     {titulo:'Believe', artista:'Neffex', src:'music/Believe - NEFFEX.mp3', img:'image/guitar2.jpg'},
-    {titulo:'Digifunk', artista:'DivKid', src:'Believe - DivKid.mp3', img:'image/eletronic.jpg'}
+    {titulo:'Digifunk', artista:'DivKid', src:'music/Digifunk - DivKid.mp3', img:'image/eletronic.jpg'}
 ];
 
 let musica = document.querySelector('audio');
@@ -14,6 +14,8 @@ let nomeArtista = document.querySelector('.descricao i');
 
 let indexMusica = 0;
 
+renderizarMusica(indexMusica);
+
 duracaoMusica.textContent = segParaMin(Math.floor(musica.duration));
 
 document.querySelector('.botao-play').addEventListener('click', tocarMusica);
@@ -24,10 +26,14 @@ musica.addEventListener('timeupdate', atualizarBarra);
 
 document.querySelector('.anterior').addEventListener('click', () => { 
     indexMusica--;
+    if(indexMusica < 0)
+        indexMusica = 2;
     renderizarMusica(indexMusica)});
 
-document.querySelector('.proximo').addEventListener('click', () => { 
+document.querySelector('.proxima').addEventListener('click', () => { 
     indexMusica++;
+    if(indexMusica >2)
+        indexMusica = 0;
     renderizarMusica(indexMusica)});
 
 function tocarMusica() {
